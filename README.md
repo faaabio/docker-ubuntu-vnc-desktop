@@ -1,4 +1,4 @@
-docker-ubuntu-vnc-desktop
+docker-ubuntu-vnc-desktop-java8-biokepler
 =========================
 
 From Docker Index
