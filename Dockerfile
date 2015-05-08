@@ -13,6 +13,13 @@ RUN apt-get update \
     && apt-get install -y --force-yes --no-install-recommends supervisor \
         openssh-server pwgen sudo vim-tiny \
         net-tools \
+        software-properties-common \
+        python-software-properties \
+        maven \
+        vim \
+        git \
+        subversion \
+        ant \
         lxde x11vnc xvfb \
         gtk2-engines-murrine ttf-ubuntu-font-family \
         libreoffice firefox \
@@ -29,14 +36,11 @@ ENV LC_ALL     en_US.UTF-8
 RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" > /etc/apt/sources.list.d/webupd8team-java-trusty.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends oracle-java8-installer && apt-get clean all
+RUN apt-get update && apt-get install -y --force-yes --no-install-recommends oracle-java8-installer && apt-get clean all
 
 ## JAVA_HOME
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-#Install Packages
-RUN apt-get update
-RUN apt-get install -y software-properties-common python-software-properties maven vim git subversion ant
 #Install kepler
 RUN mkdir -p /home/kepler/kepler.modules
 RUN cd /home/kepler/kepler.modules/; svn co https://code.kepler-project.org/code/kepler/trunk/modules/build-area
